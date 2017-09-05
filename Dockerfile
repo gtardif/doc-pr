@@ -23,7 +23,7 @@ ENV BASE ""
 
 COPY --from=hub_builder /go/bin/hub /usr/bin
 COPY --from=hub_builder /go/bin/getme /usr/bin
-COPY doc-pr.sh .
+COPY run.sh .
 
-RUN chmod +x ./doc-pr.sh
-CMD ["./doc-pr.sh"]
+RUN chmod +x ./run.sh
+CMD ["./run.sh"]

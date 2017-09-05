@@ -1,7 +1,13 @@
 #!/bin/sh
+
 set -ex
 
 CAPITALIZED_CHANNEL=$(echo $CHANNEL | awk '{ print toupper(substr($0, 1, 1)) substr($0, 2) }')
+if [ "${ARCH}" == "mac" ] ; then
+	ARCH_LABEL="mac"
+else
+	ARCH_LABEL="windows"
+fi
 
 echo "Get sources"
 git clone https://${GITHUB_TOKEN}@github.com/gtardif/docker.github.io.git sources
@@ -12,12 +18,6 @@ git rebase upstream/master
 git push origin master
 git checkout -b release_notes_${VERSION}
 cd ..
-
-if [ "${ARCH}" == "mac" ] ; then
-	ARCH_LABEL="mac"
-else
-	ARCH_LABEL="windows"
-fi
 
 wget https://download.docker.com/${ARCH}/${CHANNEL}/${BUILD_NUMBER}/NOTES
 cat NOTES

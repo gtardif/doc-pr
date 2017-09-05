@@ -2,6 +2,7 @@ FROM golang:1.8.1-alpine as hub_builder
 
 RUN apk add --no-cache git
 RUN go get github.com/github/hub
+RUN go get github.com/dgageot/getme
 
 FROM alpine:3.5
 
@@ -21,6 +22,8 @@ ENV VERSION ""
 ENV BASE ""
 
 COPY --from=hub_builder /go/bin/hub /usr/bin
-COPY run.sh .
-RUN chmod +x run.sh
-CMD ["./run.sh"]
+COPY --from=hub_builder /go/bin/getme /usr/bin
+COPY doc-pr.sh .
+
+RUN chmod +x ./doc-pr.sh
+CMD ["./doc-pr.sh"]

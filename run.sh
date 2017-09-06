@@ -20,8 +20,13 @@ git checkout -b release_notes_${VERSION}
 cd ..
 
 wget https://download.docker.com/${ARCH}/${CHANNEL}/${BUILD_NUMBER}/NOTES
+# delete all leading blank lines at top of file
+sed -i '/./,$!d' NOTES
+# delete all trailing blank lines at end of file
+sed -i -e :a -e '/^\n*$/{$d;N;ba' -e '}'  NOTES
 #ad version header
 sed -i '1s/^/\n'"### Docker Community Edition ${VERSION} Release Notes (2017-08-31) (${CAPITALIZED_CHANNEL})"'\n\n/' NOTES
+cat NOTES
 
 #update docs
 sed -i -e '/'"## ${CAPITALIZED_CHANNEL} Release Notes"'/r NOTES' "./sources/docker-for-${ARCH_LABEL}/release-notes.md"
@@ -29,10 +34,9 @@ sed -i -e '/'"## ${CAPITALIZED_CHANNEL} Release Notes"'/r NOTES' "./sources/dock
 grep -C 10 "## Edge Release Notes" ./sources/docker-for-windows/release-notes.md
 
 cd sources
-
 git config --global user.name "${USER_NAME}"
 git config --global user.email "${USER_EMAIL}"
-  
+
 git commit -asm "Docker for ${ARCH_LABEL} ${CHANNEL} relnotes ${VERSION}"
 
 git push origin release_notes_${VERSION}

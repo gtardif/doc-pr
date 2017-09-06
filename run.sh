@@ -40,4 +40,4 @@ git config --global user.email "${USER_EMAIL}"
 git commit -asm "Docker for ${ARCH_LABEL} ${CHANNEL} relnotes ${VERSION}"
 
 git push origin release_notes_${VERSION}
-hub pull-request -m "Test automated release notes PR for ${VERSION}" -b "docker/docker.github.io:master"
+hub pull-request -m "Release notes for ${VERSION} (${CAPITALIZED_CHANNEL})" -b "docker/docker.github.io:master"

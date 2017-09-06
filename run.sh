@@ -25,7 +25,7 @@ sed -i '/./,$!d' NOTES
 # delete all trailing blank lines at end of file
 sed -i -e :a -e '/^\n*$/{$d;N;ba' -e '}'  NOTES
 #ad version header
-sed -i '1s/^/\n'"### Docker Community Edition ${VERSION} Release Notes (2017-08-31) (${CAPITALIZED_CHANNEL})"'\n\n/' NOTES
+sed -i '1s/^/\n'"### Docker Community Edition ${VERSION} 2017-08-31 (${CAPITALIZED_CHANNEL})"'\n\n/' NOTES
 cat NOTES
 
 #update docs

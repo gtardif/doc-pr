@@ -25,6 +25,5 @@ COPY --from=hub_builder /go/bin/hub /usr/bin
 COPY --from=hub_builder /go/bin/getme /usr/bin
 COPY run.sh .
 
-RUN dos2unix run.sh
 RUN chmod +x ./run.sh
 CMD ["./run.sh"]

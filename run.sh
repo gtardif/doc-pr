@@ -21,7 +21,7 @@ sed -i '1s/^/\n'"### Docker Community Edition ${VERSION} ${TODAY} (${CAPITALIZED
 cat NOTES
 
 echo "Get sources"
-git clone https://${GITHUB_TOKEN}@github.com/pinata-mac/docker.github.io.git sources
+git clone https://${GITHUB_TOKEN}@github.com/gtardif/docker.github.io.git sources
 cd sources 
 git remote add upstream https://${GITHUB_TOKEN}@github.com/docker/docker.github.io.git
 git fetch upstream

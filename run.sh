@@ -41,4 +41,4 @@ git config --global user.email "${USER_EMAIL}"
 git commit -asm "Docker for ${ARCH_LABEL} ${CHANNEL} relnotes ${VERSION}"
 
 git push origin release_notes_${VERSION}
-hub pull-request -m "$(printf "Release notes for ${VERSION} (${CAPITALIZED_CHANNEL})\n\ncc gbarr01, cc @mstanleyjones")" -b "docker/docker.github.io:master"
+hub pull-request -m "$(printf "Release notes for ${VERSION} (${CAPITALIZED_CHANNEL})\n\ncc @gbarr01, cc @mistyhacks")" -b "docker/docker.github.io:master"
